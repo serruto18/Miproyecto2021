@@ -108,7 +108,7 @@
             <a href="<?php echo base_url();?>index.php/usuario/verlista" class="nav-link">
               <i class="fas fa-address-card"></i>
               <p>      
-                Administrar Usuario
+                Administrar Usuarios
               </p>
             </a>
           </li>
