@@ -92,6 +92,23 @@ class Usuario extends CI_Controller {
 		$this->load->view('inc_footer.php');
 	}
 
+	
+
+	public function elimiarbd(){
+		$lista=$this->usuario_model->lista();
+		$data1['usuario']=$lista;
+
+		$idusuario=$_POST['idusuario'];
+		
+		$data['estado']=0;
+
+		$this->usuario_model->eliminarUsuariobd($idusuario,$data);
+			
+
+		$this->verlista();
+
+	}
+
 
 }
 
