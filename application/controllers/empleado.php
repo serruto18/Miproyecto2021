@@ -61,12 +61,14 @@ class Empleado extends CI_Controller {
 		$categoria=$_POST['categoria'];
 		$data['subcategoria']=$_POST['subcategoria'];
 		
-		
-		$this->empleado_model->agregarEmpleado($data);
-		$dataLogin['login']=($_POST['nombre'].($_POST['numeroTitulo']));
-		$dataLogin['pass']=md5($_POST['numeroTitulo']);
+		$dataLogin['login']=($_POST['nombre'].($_POST['numeroTitulo']));//login
+		$dataLogin['pass']=md5($_POST['numeroTitulo']);//password
 		$dataLogin['rol']=$_POST['categoria'];
 		$this->usuario_model->agregarUsuario($dataLogin);
+		$data['idusuario']=$this->db->insert_id();
+		$data['creadopor']=$this->session->userdata('idusuario');
+		$this->empleado_model->agregarEmpleado($data);
+		
 
 
 		$lista=$this->usuario_model->lista();
@@ -77,6 +79,8 @@ class Empleado extends CI_Controller {
 
 		if ($categoria=='proyectista')
 			$this->verlistaProyectista();
+		if ($categoria=='instalador')
+			$this->verlistaInstalador();
 
 	}
 
