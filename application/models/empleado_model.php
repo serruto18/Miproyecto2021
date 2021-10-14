@@ -21,6 +21,7 @@ class Empleado_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('empleado');
 		$this->db->where('categoria',$proyectista);
+		$this->db->where('estado',1);
 		return $this->db->get();
 	}
 	
@@ -28,6 +29,7 @@ class Empleado_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('empleado');
 		$this->db->where('categoria',$instalador);
+		$this->db->where('estado',1);
 		return $this->db->get();
 	}
 
@@ -72,6 +74,11 @@ class Empleado_model extends CI_Model{
 	}
 
 	public function modificarEmpleadobd($idempleado,$data)
+	{	
+		$this->db->where('idempleado',$idempleado);
+		$this->db->update('empleado',$data);
+	}
+	public function eliminarEmpleadobd($idempleado,$data)
 	{	
 		$this->db->where('idempleado',$idempleado);
 		$this->db->update('empleado',$data);

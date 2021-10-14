@@ -77,6 +77,8 @@ class Empleado extends CI_Controller {
 
 		if ($categoria=='proyectista')
 			$this->verlistaProyectista();
+		if ($categoria=='instalador')
+			$this->verlistaInstalador();
 
 	}
 
@@ -148,6 +150,34 @@ class Empleado extends CI_Controller {
 			
 
 		$this->verlistaProyectista();
+
+	}
+
+
+	public function eliminarProyectistabd(){
+		$lista=$this->empleado_model->lista();
+		$data1['empleado']=$lista;
+
+		$idempleado=$_POST['idempleado'];
+		
+		$data['estado']=0;
+
+		$this->empleado_model->eliminarEmpleadobd($idempleado,$data);
+		
+		$this->verlistaProyectista();
+
+	}
+	public function eliminarInstaladorbd(){
+		$lista=$this->empleado_model->lista();
+		$data1['empleado']=$lista;
+
+		$idempleado=$_POST['idempleado'];
+		
+		$data['estado']=0;
+
+		$this->empleado_model->eliminarEmpleadobd($idempleado,$data);
+		
+		$this->verlistaInstalador();
 
 	}
 }

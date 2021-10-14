@@ -103,8 +103,7 @@ class Usuario extends CI_Controller {
 		$data['estado']=0;
 
 		$this->usuario_model->eliminarUsuariobd($idusuario,$data);
-			
-
+		
 		$this->verlista();
 
 	}

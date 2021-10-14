@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>adminlte/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>estilos1.css">
-
+  <link rel="stylesheet" href="<?php echo base_url(); ?>package/dist/sweetalert2.min.css">
 </head>
 <body class="hold-transition sidebar-mini" >
 <div class="wrapper">

@@ -25,11 +25,25 @@ foreach ($usuario->result() as $row) {
     <td><?php echo $row->pass; ?></td>
     <td><?php echo $row->rol; ?></td>
     <td>
-      <?php
-        echo form_open_multipart('usuario/modificar');
-      ?>
-      <input type="hidden" name="idusuario" value="<?php echo $row->idusuario; ?>">
-      <button type="submit" class="btn btn-primary btn xs">Modificar</button>
+            <?php
+              echo form_open_multipart('usuario/modificar');
+            ?>
+            
+            <input type="hidden" name="idusuario" value="<?php echo $row->idusuario; ?>">
+            <button type="submit" class="btn btn-primary btn xs">Modificar</button>
+            <?php
+              echo form_close();
+            ?>
+    </td>
+    <td>
+            <?php
+              echo form_open_multipart('usuario/elimiarbd');
+            ?>
+            <input type="hidden" name="idusuario" value="<?php echo $row->idusuario; ?>">
+            <button type="submit" class="btn btn-primary btn xs" onclick="eliminar();">Eliminar</button>
+            <?php
+              echo form_close();
+            ?>
     </td>
   </tr>
   <?php
@@ -42,3 +56,7 @@ foreach ($usuario->result() as $row) {
   </div> 
 </div>
 </div>
+
+<script src="<?php echo base_url(); ?>//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- para los mensajes de confirmacion -->
+<script src="<?php echo base_url(); ?>package/dist/sweetalert2.all.min.js"></script>
+<script src="<?php echo base_url(); ?>sweetAlert.js"></script>
