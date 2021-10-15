@@ -43,23 +43,7 @@ class Cliente extends CI_Controller {
 		$this->load->view('inc_footer.php');
 	}
 
-	public function verPerfilEmpleado()
-	{
-		$lista=$this->usuario_model->lista();
-		$data['usuario']=$lista;
-
-		$idusuario=$_REQUEST['idusuario'];
-		$datoempleado['infoEmpleado']=$this->empleado_model->recuperarEmpleado($idusuario);
-		
-		$this->load->view('inc_head.php');
-		$this->load->view('inc_menuEmpresa',$data);
-		$this->load->view('vistaPerfilEmpleado', $datoempleado);
-		$this->load->view('inc_footer.php');
-	}
-
-
 	
-
 	public function modificar(){
 		$lista=$this->usuario_model->lista();
 		$data1['usuario']=$lista;
@@ -89,9 +73,19 @@ class Cliente extends CI_Controller {
 		$this->cliente_model->modificarCliente($idcliente,$data);
 		$this->verlista();
 		
-		/*$this->load->view('inc_head.php');
-		$this->load->view('inc_menuEmpresa', $data1);
-		$this->load->view('lista_cliente',$data1);
-		$this->load->view('inc_footer.php');*/
+	}
+
+	public function eliminarbd(){
+		$lista=$this->cliente_model->lista();
+		$data1['cliente']=$lista;
+
+		$idcliente=$_POST['idcliente'];
+		
+		$data['estado']=0;
+
+		$this->cliente_model->eliminarClientebd($idcliente,$data);
+		
+		$this->verlista();
+
 	}
 }
