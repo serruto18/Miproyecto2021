@@ -54,20 +54,21 @@ class Empleado extends CI_Controller {
 		$data['primerApellido']=$_POST['primerApellido'];
 		$data['segundoApellido']=$_POST['segundoApellido'];
 		$data['nombre']=$_POST['nombre'];
-		
 		$data['numeroTitulo']=$_POST['numeroTitulo'];
 		$data['telefono']=$_POST['telefono'];
 		$data['categoria']=$_POST['categoria'];
 		$categoria=$_POST['categoria'];
 		$data['subcategoria']=$_POST['subcategoria'];
 		
+		$data['creadopor']=$this->session->userdata('idusuario');
 		
-		$this->empleado_model->agregarEmpleado($data);
-		$dataLogin['login']=($_POST['nombre'].($_POST['numeroTitulo']));
+		$dataLogin['login']=strtolower(str_replace(' ','',($_POST['nombre'])).str_replace('/','',($_POST['numeroTitulo'])));
 		$dataLogin['pass']=md5($_POST['numeroTitulo']);
 		$dataLogin['rol']=$_POST['categoria'];
 		$this->usuario_model->agregarUsuario($dataLogin);
 
+		$data['idusuario']=$this->db->insert_id();//para rescatar el idusuario
+		$this->empleado_model->agregarEmpleado($data);
 
 		$lista=$this->usuario_model->lista();
 		$data1['usuario']=$lista;

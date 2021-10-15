@@ -7,7 +7,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <label class="name">BIENVENIDO EMPRESA: </label>
-            <div class="value"><?php echo $this->session->userdata('login'); ?></div>
+            <div class="value"><?php echo strtoupper($this->session->userdata('login')); ?></div>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

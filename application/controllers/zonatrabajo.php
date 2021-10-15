@@ -82,9 +82,20 @@ class Zonatrabajo extends CI_Controller {
 		$this->zona_model->modificarZona($idzonaTrabaja,$data);
 		$this->verlista();
 			
-		/*$this->load->view('inc_head.php');
-		$this->load->view('inc_menuEmpresa', $data1);
-		$this->load->view('lista_material',$data1);
-		$this->load->view('inc_footer.php');*/
+		
+	}
+
+	public function eliminarbd(){
+		$lista=$this->zona_model->lista();
+		$data1['zona']=$lista;
+
+		$idzonaTrabaja=$_POST['idzonaTrabaja'];
+		
+		$data['estado']=0;
+
+		$this->zona_model->eliminaZonabd($idzonaTrabaja,$data);
+		
+		$this->verlista();
+
 	}
 }

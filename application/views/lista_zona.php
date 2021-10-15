@@ -41,7 +41,7 @@
           </td>
           <td>
             <?php
-              echo form_open_multipart('usuario/modificar');
+              echo form_open_multipart('zonatrabajo/eliminarbd');
             ?>
             <input type="hidden" name="idzonaTrabaja" value="<?php echo $row->idzonaTrabaja; ?>">
             <button type="submit" class="btn btn-primary btn xs">Eliminar</button>

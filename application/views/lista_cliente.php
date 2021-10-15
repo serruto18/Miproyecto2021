@@ -49,7 +49,7 @@
           </td>
           <td>
             <?php
-              echo form_open_multipart('usuario/modificar');
+              echo form_open_multipart('cliente/eliminarbd');
             ?>
             <input type="hidden" name="idcliente" value="<?php echo $row->idcliente; ?>">
             <button type="submit" class="btn btn-primary btn xs">Eliminar</button>

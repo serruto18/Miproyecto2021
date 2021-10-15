@@ -107,6 +107,12 @@ class Usuario extends CI_Controller {
 		$this->verlista();
 
 	}
+	public function pruebabd (){
+		$query=$this->db->get('usuario');
+
+		$execonsulta=$query->result();
+		print_r($execonsulta);
+	}
 
 
 }

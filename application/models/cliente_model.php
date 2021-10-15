@@ -7,6 +7,7 @@ class Cliente_model extends CI_Model{
 	public function lista(){
 		$this->db->select('*');
 		$this->db->from('cliente');
+		$this->db->where('estado',1);
 		return $this->db->get();
 	}
 
@@ -30,6 +31,12 @@ class Cliente_model extends CI_Model{
 
 	}
 	public function modificarCliente($idcliente,$data)
+	{	
+		$this->db->where('idcliente',$idcliente);
+		$this->db->update('cliente',$data);
+	}
+
+	public function eliminarClientebd($idcliente,$data)
 	{	
 		$this->db->where('idcliente',$idcliente);
 		$this->db->update('cliente',$data);
