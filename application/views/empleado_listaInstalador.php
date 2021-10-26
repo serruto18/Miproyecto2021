@@ -94,7 +94,7 @@
                   <option value="instalador2">Instalador 2</option>
                 </select>              
               </div>
-              <input type="submit" class="btn-submit" value="Agregar1">
+              <input type="submit" class="btn-submit" value="Agregar1" onclick="positvo()">
               <?php
               echo form_close();
               ?>       
