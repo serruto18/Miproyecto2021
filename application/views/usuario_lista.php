@@ -37,10 +37,11 @@ foreach ($usuario->result() as $row) {
     </td>
     <td>
             <?php
-              echo form_open_multipart('usuario/elimiarbd');
+              $parametros=array('name'=>'formulario'.$indice,'id'=>'form1');
+              echo form_open_multipart('usuario/elimiarbd',$parametros);
             ?>
             <input type="hidden" name="idusuario" value="<?php echo $row->idusuario; ?>">
-            <button type="submit" class="btn btn-primary btn xs" onclick="eliminar();">Eliminar</button>
+            <button type="button" id="boton1" class="btn btn-primary btn xs" onclick="eliminar (<?php echo $indice; ?>);">Eliminar</button>
             <?php
               echo form_close();
             ?>
