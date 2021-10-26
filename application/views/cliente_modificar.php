@@ -27,7 +27,7 @@
       </div>
       <div class="mb-3">
           <label class="form-label">Numero de C.I.</label>
-          <input type="text" class="form-control" name="numci" value="<?php echo $row->numci; ?>">
+          <input type="text" class="form-control" name="carnet" value="<?php echo $row->carnet; ?>">
       </div>
       <div class="mb-3">
           <label class="form-label">Expedido</label>
@@ -39,15 +39,22 @@
       </div>
       <div class="mb-3">
           <label class="form-label">Telefono</label>
-          <input type="text" class="form-control" name="tel" value="<?php echo $row->tel; ?>">
+          <input type="text" class="form-control" name="telefono" value="<?php echo $row->telefono; ?>">
       </div>
       <button type="submit" class="btn btn-primary">Modificar</button>
+      
       <?php 
         echo form_close();
       }
       ?>
-
-      
+      <?php
+        echo form_open_multipart('cliente/verlistaZona');
+      ?>
+      <input type="hidden" name="idzona" value="<?php echo $row->idzona; ?>">
+      <button type="submit" class="btn btn-primary">Cancelar</button>
+      <?php 
+        echo form_close();
+      ?>
        
     </div>
   </div>
