@@ -4,6 +4,13 @@
 <div class="conteiner">
   <div class="row">
     <div class="col-md-12">
+      <?php
+        echo form_open_multipart('zonatrabajo/verlista');
+      ?>
+          <button type="submit" class="btn btn-primary btn xs">Volver</button>
+      <?php
+          echo form_close();
+      ?>
       <button type="submit" class="btn btn-primary" id="btn-abrir-popup">Agregar Cliente</button>
       <table class="table">
         <thead>
@@ -17,6 +24,7 @@
             <th scope="col">Expedido</th>
             <th scope="col">Direccion</th>
             <th scope="col">Telefono</th>
+            <th scope="col">Excedente</th>
             <th scope="col">Modificar</th>
             <th scope="col">Eliminar</th>
           </tr>
@@ -32,10 +40,21 @@
           <td><?php echo $row->primerApellido; ?></td>
           <td><?php echo $row->segundoApellido; ?></td>
           <td><?php echo $row->nombre; ?></td>
-          <td><?php echo $row->numci; ?></td>
+          <td><?php echo $row->carnet; ?></td>
           <td><?php echo $row->ciudad; ?></td>
           <td><?php echo $row->direccion; ?></td>
-          <td><?php echo $row->tel; ?></td>
+          <td><?php echo $row->telefono; ?></td>
+          <td>
+            <?php
+              echo form_open_multipart('excedente/verExcedente');
+            ?>
+            
+            <input type="hidden" name="idcliente" value="<?php echo $row->idcliente; ?>">
+            <button type="submit" class="btn btn-primary btn xs">Excendente</button>
+            <?php
+              echo form_close();
+            ?> 
+          </td>
           <td>
             <?php
               echo form_open_multipart('cliente/modificar');
@@ -52,7 +71,7 @@
               echo form_open_multipart('cliente/eliminarbd');
             ?>
             <input type="hidden" name="idcliente" value="<?php echo $row->idcliente; ?>">
-            <button type="submit" class="btn btn-primary btn xs">Eliminar</button>
+            <button type="submit" class="btn btn-primary btn xs" onclick="eliminar();">Eliminar</button>
             <?php
               echo form_close();
             ?> 
@@ -79,6 +98,7 @@
               echo form_open_multipart('cliente/agregarbd');
             ?>      
               <div class="contenedor-inputs">
+                <input type="hidden" name="idzona" value="<?php echo $row->idzona; ?>">
                 <p><label class="name">Código: </label>
                 <input type="text" name="codigo"></p>
                 <p><label class="name">Primer Apellido: </label>
@@ -88,13 +108,13 @@
                 <p><label class="name">Nombres: </label>
                 <input type="text" name="nombre"></p>
                 <p><label class="name">Numero de C.I.: </label>
-                <input type="text" name="numci"></p>
+                <input type="text" name="carnet"></p>
                 <p><label class="name">Ciudad: </label>
                 <input type="text" name="ciudad"></p>
                 <p><label class="name">Direccion: </label>
                 <input type="text" name="direccion"></p>
                 <p><label class="name">Telefono: </label>
-                <input type="text" name="tel"></p>          
+                <input type="text" name="telefono"></p>          
               </div>
               <input type="submit" class="btn-submit" value="Agregar1">
               <?php
