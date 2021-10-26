@@ -11,6 +11,14 @@ class Cliente_model extends CI_Model{
 		return $this->db->get();
 	}
 
+	public function listaClienteZona($idzona){
+		$this->db->select('*');
+		$this->db->from('cliente');
+		$this->db->where('estado',1);
+		$this->db->where('idzona',$idzona);
+		return $this->db->get();
+	}
+
 	public function validar($login,$pass)
 	{
 		$this->db->select('*');
