@@ -45,9 +45,9 @@
           </td>
           <td>
             <?php
-              echo form_open_multipart('usuario/modificar');
+              echo form_open_multipart('empleado/eliminarInstaladorbd');
             ?>
-            <input type="hidden" name="idusuario" value="<?php echo $row->idusuario; ?>">
+            <input type="hidden" name="idempleado" value="<?php echo $row->idempleado; ?>">
             <button type="submit" class="btn btn-primary btn xs">Eliminar</button>
             <?php
               echo form_close();
@@ -94,7 +94,7 @@
                   <option value="instalador2">Instalador 2</option>
                 </select>              
               </div>
-              <input type="submit" class="btn-submit" value="Agregar1">
+              <input type="submit" class="btn-submit" value="Agregar1" onclick="positvo()">
               <?php
               echo form_close();
               ?>       

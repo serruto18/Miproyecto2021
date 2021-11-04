@@ -54,6 +54,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               case '3':
                 $mensaje="Gracias por usar el sistema";
                 break;
+              case '4':
+                $mensaje="Algun campo esta vacio, ingrese datos correctos";
+                break;
               default:
                 $mensaje="Ingrese sus datos";
                 break;
@@ -68,7 +71,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         ?>
       <p class="login-box-msg"><?php echo $mensaje; ?></p>
 
-      <form action="inc_menuEmpresa.php" method="POST">
+      <form action="vistaLogin.php" method="POST">
+
+        <?php
+          if (isset($_POST['login'])) {
+            $login = $_POST['login'];
+            $pass = $_POST['pass'];
+            $campos=array();
+            if ($login == "") {
+              array_push($campos, "El campo no puede estar vacio");
+            }
+            if ($pass =="") {
+              array_push($campos, "El campo no puede estar vacio");
+            }
+            if (count($campos) > 0) {
+              echo "<div class='error'>";
+              for ($i=0; $i <count($campos) ; $i++) { 
+                echo "<li>".$campos[$i]."</li>";
+              }
+            }else{
+
+            }
+            echo "</div>";
+          }
+        ?>
+
         
         <div class="input-group mb-3">       
           <input type="text" class="form-control" name="login" placeholder="Login">
@@ -79,7 +106,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="pass" placeholder="Password">
+          <input type="password" class="form-control" name="pass" id="exampleInputPassword1" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-key"></span>
@@ -101,6 +128,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
           <!-- /.col -->
         </div>
+
+        
 
       </form>
       <!-- /.social-auth-links -->
@@ -162,5 +191,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>adminlte/dist/js/adminlte.min.js"></script>
+
+
+
 </body>
 </html>

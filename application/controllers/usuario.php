@@ -32,6 +32,9 @@ class Usuario extends CI_Controller {
 				redirect('usuario/panel','refresh');
 			}
 		}
+		if($login=="" || $pass==""){
+			redirect('usuario/index/4','refresh');
+		}
 		else
 		{
 			redirect('usuario/index/1','refresh');//el 1 significa que hay un error 
@@ -90,6 +93,28 @@ class Usuario extends CI_Controller {
 		$this->load->view('inc_menuEmpresa',$data1);
 		$this->load->view('usuario_lista',$data);
 		$this->load->view('inc_footer.php');
+	}
+
+	
+
+	public function elimiarbd(){
+		$lista=$this->usuario_model->lista();
+		$data1['usuario']=$lista;
+
+		$idusuario=$_POST['idusuario'];
+		
+		$data['estado']=0;
+
+		$this->usuario_model->eliminarUsuariobd($idusuario,$data);
+		
+		$this->verlista();
+
+	}
+	public function pruebabd (){
+		$query=$this->db->get('usuario');
+
+		$execonsulta=$query->result();
+		print_r($execonsulta);
 	}
 
 

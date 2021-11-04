@@ -13,6 +13,8 @@
             <th scope="col">Provincia</th>
             <th scope="col">Distrito</th>
             <th scope="col">Otb</th>
+            <th scope="col">Inspector</th>
+            <th scope="col">Clientes</th>
             <th scope="col">Modificar</th>
             <th scope="col">Eliminar</th>
           </tr>
@@ -28,12 +30,26 @@
           <td><?php echo $row->provincia; ?></td>
           <td><?php echo $row->distrito; ?></td>
           <td><?php echo $row->otb; ?></td>
+          <td><?php echo $row->idinspector; ?></td>
+
+          <td>
+            <?php
+              echo form_open_multipart('cliente/verlistaZona');
+            ?>
+            
+            <input type="hidden" name="idzona" value="<?php echo $row->idzona; ?>">
+            <button type="submit" class="btn btn-primary btn xs">Ver Clientes</button>
+            <?php
+              echo form_close();
+            ?> 
+          </td>
+
           <td>
             <?php
               echo form_open_multipart('zonatrabajo/modificar');
             ?>
             
-            <input type="hidden" name="idzonaTrabaja" value="<?php echo $row->idzonaTrabaja; ?>">
+            <input type="hidden" name="idzona" value="<?php echo $row->idzona; ?>">
             <button type="submit" class="btn btn-primary btn xs">Modificar</button>
             <?php
               echo form_close();
@@ -41,9 +57,9 @@
           </td>
           <td>
             <?php
-              echo form_open_multipart('usuario/modificar');
+              echo form_open_multipart('zonatrabajo/eliminarbd');
             ?>
-            <input type="hidden" name="idzonaTrabaja" value="<?php echo $row->idzonaTrabaja; ?>">
+            <input type="hidden" name="idzona" value="<?php echo $row->idzona; ?>">
             <button type="submit" class="btn btn-primary btn xs">Eliminar</button>
             <?php
               echo form_close();
@@ -77,7 +93,18 @@
                 <p><label class="name">Distrito: </label>
                 <input type="text" name="distrito"></p> 
                 <p><label class="name">otb: </label>
-                <input type="text" name="otb"></p>  
+                <input type="text" name="otb"></p>
+                <p><label class="name">Seleccione Inspesctor: </label>
+                <select name="subcategoria">
+                  <option value="0">Seleccione Inspector</option>
+                  <?php
+                  foreach ($inspector->result() as $row) {
+                  ?>
+                  <option value="<?php echo $row->idinspector; ?>"><?php echo $row->primerApellido; ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
               </div>
               <input type="submit" class="btn-submit" value="Agregar1">
               <?php

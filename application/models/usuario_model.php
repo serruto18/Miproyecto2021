@@ -12,6 +12,7 @@ class Usuario_model extends CI_Model{
 	public function lista(){
 		$this->db->select('*');
 		$this->db->from('usuario');
+		$this->db->where('estado',1);
 		return $this->db->get();
 	}
 
@@ -23,4 +24,10 @@ class Usuario_model extends CI_Model{
 		$this->db->where('pass',$pass);
 		return $this->db->get();	
 	}	
+
+	public function eliminarUsuariobd($idusuario,$data)
+	{	
+		$this->db->where('idusuario',$idusuario);
+		$this->db->update('usuario',$data);
+	}
 }

@@ -14,6 +14,11 @@
 </div>
 <!-- ./wrapper -->
 <script src="<?php echo base_url(); ?>popup2.js"></script>
+
+
+
+
+
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -115,6 +120,8 @@ $(function () {
 });
 </script>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?php echo base_url(); ?>sweetAlert1.js"></script>
 
 </body>
 </html>

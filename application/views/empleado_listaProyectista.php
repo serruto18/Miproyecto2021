@@ -39,17 +39,19 @@
             
             <input type="hidden" name="idempleado" value="<?php echo $row->idempleado; ?>">
             <button type="submit" class="btn btn-primary btn xs">Modificar</button>
-            
-          </td>
-          <td>
-            <?php
-              echo form_open_multipart('usuario/modificar');
-            ?>
-            <input type="hidden" name="idusuario" value="<?php echo $row->idusuario; ?>">
-            <button type="submit" class="btn btn-primary btn xs">Eliminar</button>
             <?php
               echo form_close();
             ?>
+          </td>
+          <td>
+            <?php
+              echo form_open_multipart('empleado/eliminarProyectistabd');
+            ?>
+            <input type="hidden" name="idempleado" value="<?php echo $row->idempleado; ?>">
+            <button type="submit" class="btn btn-primary btn xs">Eliminar</button>
+            <?php
+              echo form_close();
+            ?> 
           </td>
         </tr>
         <?php
@@ -85,8 +87,8 @@
                 <p><label class="name">Numero de celular: </label>
                 <input type="text" name="telefono"></p>
                 <p><label class="name">Cargo en la empresa: </label>
-                <select name="categoria">
-                  <option value="proyectista">Proyectista</option>
+                <select type="hidden" name="categoria">
+                  <option  value="proyectista">Proyectista</option>
                 </select>
                 <select name="subcategoria">
                   <option value="proyectista1">Proyectista 1</option>
@@ -102,40 +104,3 @@
           </div>
   </div>
 
-
-<div class="overlayAgregar" id="overlayAgregar">
-          <div class="popupAgregar" id="popupAgregar">
-            <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><span class="fas fa-times-circle"></span></a>
-            <h3>Formulario de Registro de Proyectista</h3>          
-            
-            <?php
-              echo form_open_multipart('empleado/agregarbd');
-            ?>       
-                <div class="contenedor-inputs">
-                <label class="name">Primer Apellido: </label>
-                <input type="text" name="primerApellido">
-                <p><label class="name">Segundo Apellido: </label>
-                <input type="text" name="segundoApellido"></p>
-                <p><label class="name">Nombres: </label>
-                <input type="text" name="nombre" value=""></p>
-                <p><label class="name">Numero del titulo: </label>
-                <input type="text" name="numeroTitulo"></p>
-                <p><label class="name">Numero de celular: </label>
-                <input type="text" name="telefono"></p>
-                <p><label class="name">Cargo en la empresa: </label>
-                <select name="categoria">
-                  <option value="proyectista">Proyectista</option>
-                </select>
-                <select name="subcategoria">
-                  <option value="proyectista1">Proyectista 1</option>
-                  <option value="proyectista2">Proyectista 2</option>
-                </select>
-                
-                
-              </div>
-              <input type="submit" class="btn-submit" value="Agregar">
-              <?php
-              echo form_close();
-              ?>       
-          </div>
-  </div>

@@ -9,10 +9,17 @@ class Zonatrabajo extends CI_Controller {
 		$data1['usuario']=$lista;
 		$lista=$this->zona_model->lista();
 		$data['zona']=$lista;
+		$listainspector=$this->inspector_model->lista();
+		$data['inspector']=$listainspector;
 
 
 		$this->load->view('inc_head.php');
-		$this->load->view('inc_menuEmpresa',$data1);
+		if ($this->session->userdata('rol')=='admin') {
+			$this->load->view('inc_menuEmpresa',$data1);
+		}
+		if ($this->session->userdata('rol')=='proyectista') {
+			$this->load->view('inc_menuProyectista',$data1);
+		}
 		$this->load->view('lista_zona',$data);
 		$this->load->view('inc_footer.php');
 	}
@@ -24,7 +31,7 @@ class Zonatrabajo extends CI_Controller {
 		$data['provincia']=$_POST['provincia'];
 		$data['distrito']=$_POST['distrito'];
 		$data['otb']=$_POST['otb'];
-		
+		$data['creadopor']=$this->session->userdata('idusuario');
 		$this->zona_model->agregarZona($data);
 		
 		$lista=$this->usuario_model->lista();
@@ -34,10 +41,6 @@ class Zonatrabajo extends CI_Controller {
 		$data['material']=$lista;
 
 		$this->verlista();
-		/*$this->load->view('inc_head.php');
-		$this->load->view('inc_menuEmpresa',$data1);
-		$this->load->view('lista_material',$data);
-		$this->load->view('inc_footer.php');*/
 	}
 
 	public function verPerfilEmpleado()
@@ -59,7 +62,7 @@ class Zonatrabajo extends CI_Controller {
 		$lista=$this->usuario_model->lista();
 		$data1['usuario']=$lista;
 
-		$idzonaTrabaja=$_POST['idzonaTrabaja'];
+		$idzonaTrabaja=$_POST['idzona'];
 		$data['infozona']=$this->zona_model->recuperarZona($idzonaTrabaja);
 
 		$this->load->view('inc_head.php');
@@ -72,7 +75,7 @@ class Zonatrabajo extends CI_Controller {
 		$lista=$this->material_model->lista();
 		$data1['material']=$lista;
 
-		$idzonaTrabaja=$_POST['idzonaTrabaja'];
+		$idzonaTrabaja=$_POST['idzona'];
 		
 		$data['departamento']=$_POST['departamento'];
 		$data['provincia']=$_POST['provincia'];
@@ -82,9 +85,20 @@ class Zonatrabajo extends CI_Controller {
 		$this->zona_model->modificarZona($idzonaTrabaja,$data);
 		$this->verlista();
 			
-		/*$this->load->view('inc_head.php');
-		$this->load->view('inc_menuEmpresa', $data1);
-		$this->load->view('lista_material',$data1);
-		$this->load->view('inc_footer.php');*/
+		
+	}
+
+	public function eliminarbd(){
+		$lista=$this->zona_model->lista();
+		$data1['zona']=$lista;
+
+		$idzonaTrabaja=$_POST['idzona'];
+		
+		$data['estado']=0;
+
+		$this->zona_model->eliminaZonabd($idzonaTrabaja,$data);
+		
+		$this->verlista();
+
 	}
 }
